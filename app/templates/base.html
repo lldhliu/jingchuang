@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+
+{% block title %}
+    <title>设备</title>
+{% endblock %}
+
+{% block head %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+{% endblock %}
+
+<body>
+{% block navbar %}
+<div class="sub-nav flex-vertical-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-md-offset-1">
+                    <a id="user" href="#"
+                       class="flex-vertical-hor-center">
+                        <img src="{{ url_for('static', filename='images/person.svg') }}"/>
+                        <span>用户</span>
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <a id="equipment" href="#"
+                       class="flex-vertical-hor-center">
+                        <img src="{{ url_for('static', filename='images/gear-wide-connected.svg') }}"/>
+                        <span>设备详情</span>
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <a id="equ_data" href="#"
+                       class="flex-vertical-hor-center">
+                        <img src="{{ url_for('static', filename='images/layout-text-sidebar-reverse.svg') }}"/>
+                        <span>设备数据</span>
+                    </a>
+                </div>
+{#                <div class="col-md-2">#}
+{#                    <a id="pending" href="#"#}
+{#                       class="flex-vertical-hor-center">#}
+{#                        <img src="{{ url_for('static', filename='images/fish.png') }}"/>#}
+{#                        <span>鱼漂</span>#}
+{#                    </a>#}
+{#                </div>#}
+            </div>
+        </div>
+    </div>
+<div class="container-height flex-vertical-center float-menu">
+        {% if not current_user.is_authenticated %}
+            <div style="float:right">
+                <a href="{{ url_for('web.login') }}">登录</a>
+                <a style="margin-left: 40px;" href="{{ url_for('web.register') }}">注册</a>
+            </div>
+        {% else %}
+            <a href="{{ url_for('web.personal_center') }}">{{ current_user.nickname }}</a>
+            <a style="margin-left: 40px;" href="{{ url_for('web.logout') }}">注销</a>
+        {% endif %}
+    </div>
+{% endblock %}
+<div class='container'>
+    <div class="row">
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                {% if message %}
+                    <div class="alert alert-warning" role="alert">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
+        {% endwith %}
+        {% if form and form.errors %}
+            {% for key, error in form.errors.items() %}
+                <div class="alert alert-warning" role="alert">{{ error }}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    {% block content %} {% endblock %}
+</div>
+<div id="footer" class="flex-hor-center">
+    <span>© 2020-2021 ldh.im created by devin</span>
+</div>
+</body>
+
+{% block scripts %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+    <script>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+{% endblock %}
+
+</html>
