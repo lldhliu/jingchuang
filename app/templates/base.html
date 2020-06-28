@@ -6,14 +6,8 @@
 {% endblock %}
 
 {% block head %}
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='3rd/ui/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 {% endblock %}
 
@@ -22,21 +16,21 @@
 <div class="sub-nav flex-vertical-center">
         <div class="container">
             <div class="row">
-                <div class="col-md-2 col-md-offset-1">
-                    <a id="user" href="#"
+                <div class="col-md-3 col-md-offset-1">
+                    <a id="user" href="{{ url_for('web.index') }}"
                        class="flex-vertical-hor-center">
                         <img src="{{ url_for('static', filename='images/person.svg') }}"/>
-                        <span>用户</span>
+                        <span>客户</span>
                     </a>
                 </div>
-                <div class="col-md-2">
-                    <a id="equipment" href="#"
+                <div class="col-md-3">
+                    <a id="equipment" href="{{ url_for('web.equipment') }}"
                        class="flex-vertical-hor-center">
                         <img src="{{ url_for('static', filename='images/gear-wide-connected.svg') }}"/>
                         <span>设备详情</span>
                     </a>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <a id="equ_data" href="#"
                        class="flex-vertical-hor-center">
                         <img src="{{ url_for('static', filename='images/layout-text-sidebar-reverse.svg') }}"/>
@@ -88,17 +82,9 @@
 </body>
 
 {% block scripts %}
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-            crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='3rd/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='3rd/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
     <script src="{{ url_for('static', filename='js/base.js') }}"></script>
     <script>
         $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
