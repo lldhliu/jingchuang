@@ -21,6 +21,8 @@ from app.web import auth
 # from app.web import drift
 # from app.web import gift
 from app.web import main
+
 # from app.web import wish
 # from app.api import book1
 # from app.web import user
+from app.web import equipment
