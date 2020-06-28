@@ -11,7 +11,7 @@ def index():
     # recent_gifts = Gift.recent()
     books = []
 
-    return render_template('index.html', recent=books)
+    return render_template('index.html')
 
 
 @web.route('/personal')
