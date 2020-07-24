@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on指令:为元素绑定事件</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" name="" value="v-on指令" v-on:click="doIt">
+        <input type="button" name="" value="v-on简写" @click="doIt">
+        <input type="button" name="" value="v-on双击事件" @dblclick="doIt">
+        <h2 @click="changeFood">{{ food }}</h2>
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 创建 vue 实例
+        var app = new Vue({
+            el: "#app",
+            data: {
+                food: "西蓝花炒蛋"
+            },
+            methods: {
+                doIt: function(){
+                    alert("做IT");
+                },
+
+                changeFood: function(){
+                    // console.log(this.food);
+                    this.food += "好好吃"
+                }
+            },
+        })
+    </script>
+
+</body>
+</html>

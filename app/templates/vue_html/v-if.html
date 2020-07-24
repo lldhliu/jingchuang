@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+</head>
+<body>
+    <!-- v-if: 根据表达值的真假，切换元素的显示和隐藏(操纵dom元素) -->
+    <div id="app">
+        <p v-if="true">我是一个p标签</p>
+        <p v-if="isShow">我是一个p标签</p>
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 创建 vue 实例
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isShow: false,
+                age: 16
+            },
+            methods: {
+
+            },
+        })
+    </script>
+
+</body>
+</html>

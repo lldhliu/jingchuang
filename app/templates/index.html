@@ -9,6 +9,7 @@
 {#            <caption>边框表格布局</caption>#}
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>名称</th>
                     <th>城市</th>
                     <th>邮编</th>
@@ -16,17 +17,18 @@
                 </tr>
             </thead>
             <tbody>
-        {#    {% for customer in customers %}#}
-                <tr>
-                    <td>Tanmay</td>
-                    <td>Bangalore</td>
-                    <td>560001</td>
-                    <td>
-                         <button type="button" class="btn btn-primary">修改</button>
-                         <button type="button" class="btn btn-primary">删除</button>
-                    </td>
-                </tr>
-                <tr>
+        <!-- {#    {% for customer in customers %}#} -->
+            <tr v-for="(item,index) in userList" :key="item.date">
+                <td>{{ index+1 }}</td>
+                <td>{{ item.nickname }}</td>
+                <td>{{ item.city }}</td>
+                <td>560001</td>
+                <td>
+                     <button type="button" class="btn btn-primary">修改</button>
+                     <button type="button" class="btn btn-primary">删除</button>
+                </td>
+            </tr>
+                <!-- <tr>
                     <td>Sachin</td>
                     <td>Mumbai</td>
                     <td>400003</td>
@@ -43,10 +45,52 @@
                          <button type="button" class="btn btn-primary">修改</button>
                          <button type="button" class="btn btn-primary">删除</button>
                     </td>
-                </tr>
-        {#    {% endfor %}#}
+                </tr> -->
+        <!-- {#    {% endfor %}#} -->
             </tbody>
         </table>
     </div>
+
+{% endblock %}
+
+{% block script %}
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 官网提供的 axios 在线地址 -->
+    <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+    <!-- 自己的js -->
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#customers",
+            data: {
+                // city: '',
+                userList: [
+                    {nickname: '小明', city: '上海'},
+                    {nickname: '小航', city: '北京'},
+                    {nickname: '小红', city: '深圳'},
+                ]
+            },
+            methods: {
+                // searchWeather: function(){
+                //     // console.log("天气查询");
+                //     // console.log(this.city);
+                //     // 调用接口
+                //     // 保存 this
+                //     var that = this;
+                //     axios.get("http://wthrcdn.etouch.cn/weather_mini?city="+this.city).
+                //     then(function(response){
+                //         console.log(response.data.data.forecast);
+                //         that.weatherList = response.data.data.forecast;
+                //     })
+                //     .catch(function(err){})
+                // },
+                //
+                // changeCity: function(city){
+                //     this.city = city;
+                //     this.searchWeather();
+                // }
+            },
+        })
+    </script>
 
 {% endblock %}

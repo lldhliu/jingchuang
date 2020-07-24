@@ -1,19 +1,15 @@
 """
  Created by ldh on 18-11-22
 """
-from flask import jsonify, request, flash, render_template
+from flask import request, render_template, redirect, url_for
 from flask_login import current_user
 
-from app.forms.book import SearchForm
-from app.libs.helper import is_isbn_or_key
 from app.models.gift import Gift
 from app.models.wish import Wish
 from app.spider.yushu_book import YuShuBook
-from app.view_models.book import BookViewModel, BookCollection
+from app.view_models.book import BookViewModel
 from app.view_models.trade import TradeInfo
 from . import web
-import json
-
 
 __author__ = "ldh"
 
@@ -21,9 +17,25 @@ __author__ = "ldh"
 # app.add_url_rule('/hello', view_func=hello)
 
 
-@web.route('/equipment')  # 第一种注册路由方式（一般使用）
+@web.route('/equipment', methods=['POST', 'GET'])  # 第一种注册路由方式（一般使用）
 def equipment():
-    return render_template('equipment.html')
+
+    equipments = []
+    return render_template('equipment.html', equipments=equipments)
+
+
+@web.route('/equipment/create', methods=['POST', 'GET'])
+def equipment_create():
+    if request.method == 'POST':
+        return redirect(url_for('web.equipment'))
+    return render_template('equipment_create.html')
+
+
+@web.route('/equipment/data', methods=['POST', 'GET'])
+def equipment_data():
+    if request.method == 'POST':
+        return redirect(url_for('web.equipment_data'))
+    return render_template('equipment_data.html')
 
 
 @web.route('/book/<isbn>/detail')

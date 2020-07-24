@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/equipment.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="row search-container">
+        <div class="col-lg-6 col-centered">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button id="button_text" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">设备编号<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a class="a-1">设备编号</a></li>
+                        <li><a class="a-1">设备名称</a></li>
+                        <li><a class="a-1">设备类型</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a class="a-1">Separated link</a></li>
+                    </ul>
+                </div><!-- /btn-group -->
+                <input type="text" class="form-control" aria-label="...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" href="{{ url_for('web.equipment_data') }}">查询</button>
+                </span>
+            </div><!-- /input-group -->
+
+        </div><!-- /.col-lg-6 -->
+
+    </div>
+
+
+
+{% endblock %}
+
+{#{% block scripts %}#}
+{#    {{ super() }}#}
+{#    <script>#}
+{#        // 点击拉下框选项，替换展示内容#}
+{#        $(".a-1").click(function () {#}
+{#            var val = $(this).html();#}
+{#            $("#button_text").text(val);#}
+            {#$("#button_text").dropdown('toggle')#}
+{#            mailType = $('#button_text').val();#}
+{#            console.log('233====: ', mailType)#}
+{#        })#}
+        {#var mailType = $('.a-1')._value();#}
+			{#var rewardId = $('div .input-group #rewardId'+i).val();#}
+			{#var rewardNum = $('div .input-group #rewardNum'+i).val();#}
+			{#if(( rewardId != "" || undefined != rewardId) && (rewardNum != ""|| undefined != rewardNum)){#}
+			{#	var obj = new Object();#}
+			{#	obj['type'] = mailType;#}
+			{#	obj['id'] = rewardId;#}
+			{#	obj['count'] = rewardNum;#}
+			{#	rewardArray.push(obj);#}
+
+    {#</script>#}
+{#    <script>#}
+
+{#var rowCount = 1;//(资源)行数默认1行#}
+{##}
+{#//添加资源输入框项#}
+{#		  function addCenterIpGrp(obj){#}
+{#			rowCount++#}
+{#			 html = '<div class="input-group centerIp">'+#}
+{#	          '<select id="mailType'+rowCount+'" class="form-control m-b mailType'+rowCount+'" >'+#}
+{#	          	'<option value="">请选择</option>'+#}
+{#	            '<option value="2">道具</option>'+#}
+{#	          	'<option value="4">货币</option>'+#}
+{#	          '</select>'+#}
+{#	          '<label class="input-group-addon">道具：</label>'+#}
+{#	                '<input class="form-control rewardId" type="text" name="rewardId'+rowCount+'" id="rewardId'+rowCount+'" >'+#}
+{#	          ' <label class="input-group-addon">数量：</label>'+#}
+{#	          		' <input class="form-control rewardNum" type="text" name="rewardNum'+rowCount+'" id="rewardNum'+rowCount+'" >'+#}
+{#         	  ' <span class="input-group-btn">'+#}
+{#	          		'<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" id="delCenterIpGrp"><span class="glyphicon glyphicon-minus"></span></button>'+#}
+{#	          ' </span>'+#}
+{#	        '</div>'#}
+{#		    obj.insertAdjacentHTML('beforebegin',html)#}
+{#		  }#}
+{##}
+{#		  $(document).on('click','#delCenterIpGrp',function(){#}
+{#			  var el = this.parentNode.parentNode ;#}
+{#			  var centerIp = $(this).parent().parent().find('#ipInput').val() ;#}
+{#			   el.parentNode.removeChild(el)#}
+{#		})#}
+{##}
+{#    var rewardArray = new Array();#}
+{#for (var i=1; i <= rowCount; i++){#}
+{#			var mailType = $('div .input-group .mailType'+i).val();#}
+{#			var rewardId = $('div .input-group #rewardId'+i).val();#}
+{#			var rewardNum = $('div .input-group #rewardNum'+i).val();#}
+{#			if(( rewardId != "" || undefined != rewardId) && (rewardNum != ""|| undefined != rewardNum)){#}
+{#				var obj = new Object();#}
+{#				obj['type'] = mailType;#}
+{#				obj['id'] = rewardId;#}
+{#				obj['count'] = rewardNum;#}
+{#				rewardArray.push(obj);#}
+{#			}#}
+{#		}#}
+{#		 var rewardsJsonData = JSON.stringify(rewardArray);#}
+{#console.log("rewardsJsonData=====: %s", rewardsJsonData)#}
+{#    </script>#}
+{#{% endblock %}#}

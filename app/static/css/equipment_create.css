@@ -22,3 +22,17 @@
 .personal-detail div > span:first-child {
     color: #8e8E8E;
 }
+
+.equipment-create {
+    color: #323232;
+    font-size: 15px;
+}
+
+.equipment-create div {
+    display: inline-table;
+    margin-bottom: 10px;
+}
+
+.equipment-create div > span:first-child {
+    color: #8e8E8E;
+}
