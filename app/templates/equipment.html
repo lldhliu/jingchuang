@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "helper.html" as helper %}
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/equipment.css') }}">
@@ -6,24 +7,26 @@
 {% block content %}
     <div class="row search-container">
         <div class="col-lg-6 col-centered">
-            <div class="input-group">
-                <div class="input-group-btn">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </div><!-- /btn-group -->
-                <input type="text" class="form-control" aria-label="...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" href="{{ url_for('web.equipment') }}">查询</button>
-                </span>
-            </div><!-- /input-group -->
+            <form action="" method="post">
+                <div class="input-group">
+                    <div class="input-group-btn">#}
+                    <select id="select" name="filter_by" class="btn btn-default dropdown-toggle">
+                    <option value="no">设备编号</option>
+                    <option value="name">设备名称</option>
+                    <option value="type">设备类型</option>
+                    </select>
+
+                    </div><!-- /btn-group -->
+                    <input type="text" name="filter_content" class="form-control" aria-label="...">
+                    <span class="input-group-btn">
+                        <input  id="btn-submit" type="submit" class="btn btn-default" value="查询">
+                    </span>
+                </div>
+            </form>
+
+
         </div><!-- /.col-lg-6 -->
+
 
     <a href="{{ url_for('web.equipment_create') }}">
         <button type="button" class="btn btn-primary btn-right">新增设备</button>
@@ -35,52 +38,35 @@
             {#            <caption>边框表格布局</caption>#}
             <thead>
             <tr>
+                <th>ID</th>
                 <th>设备编号</th>
+                <th>设备类型</th>
                 <th>设备名称</th>
                 <th>设备地址</th>
                 <th>设备温度(实时)</th>
                 <th>合模次数（实时）</th>
-                <th class="operate">操作</th>
+{#                <th class="operate">操作</th>#}
             </tr>
             </thead>
             <tbody>
-            {#    {% for customer in customers %}#}
+            {% for equipment in equipments.items %}
             <tr>
-                <td>Tanmay</td>
-                <td>Bangalore</td>
-                <td>560001</td>
-                <td>560001</td>
-                <td>560001</td>
-                <td>
-                    <button type="button" class="btn btn-primary">修改</button>
-                    <button type="button" class="btn btn-primary">删除</button>
-                </td>
+                <td>{{ equipment.id }}</td>
+                <td>{{ equipment.no }}</td>
+                <td>{{ equipment.type }}</td>
+                <td>{{ equipment.name }}</td>
+                <td>{{ equipment.address }}</td>
+                <td>{{ equipment.temperature }}</td>
+                <td>{{ equipment.open_count }}</td>
+{#                <td>#}
+{#                    <button type="button" class="btn btn-primary">修改</button>#}
+{#                    <button type="button" class="btn btn-primary">删除</button>#}
+{#                </td>#}
             </tr>
-            <tr>
-                <td>Sachin</td>
-                <td>Mumbai</td>
-                <td>400003</td>
-                <td>400003</td>
-                <td>400003</td>
-                <td>
-                    <button type="button" class="btn btn-primary">修改</button>
-                    <button type="button" class="btn btn-primary">删除</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Uma</td>
-                <td>Pune</td>
-                <td>411027</td>
-                <td>411027</td>
-                <td>411027</td>
-                <td>
-                    <button type="button" class="btn btn-primary">修改</button>
-                    <button type="button" class="btn btn-primary">删除</button>
-                </td>
-            </tr>
-            {#    {% endfor %}#}
+            {% endfor %}
             </tbody>
         </table>
+        {{ helper.render_pagination(equipments, 'web.equipment') }}
     </div>
 
 {% endblock %}

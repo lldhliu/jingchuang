@@ -82,3 +82,7 @@ class User(UserMixin, Base):
 @login_manager.user_loader
 def get_user(uid):
     return User.query.get(int(uid))
+
+
+def get_user_list(page):
+    return User.query.paginate(page, per_page=10)

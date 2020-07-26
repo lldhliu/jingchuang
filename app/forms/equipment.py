@@ -22,3 +22,6 @@ class DriftForm(Form):
     message = StringField()
     address = StringField(validators=[DataRequired(), Length(
         min=10, max=70, message='地址还不到10个字吗？尽量写详细一点吧')])
+
+class CreateForm(Form):
+    pass

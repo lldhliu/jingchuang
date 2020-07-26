@@ -1,17 +1,19 @@
-from flask import render_template
+from flask import render_template, redirect, url_for
 from flask_login import login_required, current_user
-from app.models.user import User
+from app.models.user import User, get_user_list
 from app.web import web
 
 __author__ = '七月'
 
 
 @web.route('/')
-def index():
-    # recent_gifts = Gift.recent()
-    books = []
-
-    return render_template('index.html')
+@web.route('/<int:page>')
+@login_required
+def index(page=1):
+    if current_user.nickname == "admin":
+        users = get_user_list(page)
+        return render_template('index.html', users=users)
+    return redirect(url_for("web.equipment"))
 
 
 @web.route('/personal')

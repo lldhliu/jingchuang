@@ -23,17 +23,32 @@
                         <form action="{{ url_for('web.equipment_create') }}" method="post">
                             <div class="input-group">
                                 <span class="input-group-addon" id="equ_no">设备编号</span>
-                                <input type="text" class="form-control" placeholder="设备编号"
+                                <input name="no" type="text" class="form-control" placeholder="设备编号"
+                                       aria-describedby="sizing-addon2">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="equ_no">4G通信模块标识</span>
+                                <input name="cm_no" type="text" class="form-control" placeholder="4G通信模块标识"
                                        aria-describedby="sizing-addon2">
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="equ_name">设备名称</span>
-                                <input type="text" class="form-control" placeholder="设备名称"
+                                <input name="name" type="text" class="form-control" placeholder="设备名称"
+                                       aria-describedby="sizing-addon2">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="equ_type">设备类型</span>
+                                <input name="type" type="text" class="form-control" placeholder="设备类型"
                                        aria-describedby="sizing-addon2">
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="equ_address">设备地址</span>
-                                <input type="text" class="form-control" placeholder="设备地址"
+                                <input name="address" type="text" class="form-control" placeholder="设备地址"
+                                       aria-describedby="sizing-addon2">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="equ_producer">制造商</span>
+                                <input name="producer" type="text" class="form-control" placeholder="设备制造商"
                                        aria-describedby="sizing-addon2">
                             </div>
 {#                            <button style="margin-top: 150px; font-size: 20px" type="button" class="btn btn-primary col-lg-offset-10">提交</button>#}

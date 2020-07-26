@@ -19,3 +19,11 @@ class EquipmentData(Base):
     temperature = Column(Float, comment='温度')
     open_count = Column(Integer, comment='合模次数')
 
+    @classmethod
+    def get_data_list(cls, page, equ_ids=None):
+        if equ_ids is None:
+            # a = EquipmentData.query.paginate(page, per_page=10)
+            return EquipmentData.query.paginate(page, per_page=10)
+        b = EquipmentData.query.filter(EquipmentData.equ_id.in_(equ_ids)).paginate(page, per_page=10)
+        return EquipmentData.query.filter(EquipmentData.equ_id.in_(equ_ids)).paginate(page, per_page=10)
+

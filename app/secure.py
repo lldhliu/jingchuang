@@ -8,7 +8,7 @@ __author__ = "ldh"
 """
 DEBUG = True  #  False
 SQLALCHEMY_DATABASE_URI = 'mysql+cymysql://root:2255@47.98.177.221:3306/jingchuang'
-SECRET_KEY = 'this is a secret key build by your dad'
+SECRET_KEY = 'this is a secret key build by devin_liu'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 

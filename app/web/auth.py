@@ -27,7 +27,7 @@ def register():
 def login():
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query.filter_by(nickname=form.nickname.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=True)  # 一次性cookie(浏览器关闭就会消失), 设置remember=True保存365天
             next = request.args.get('next')
