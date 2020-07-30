@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% import "helper.html" as helper %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/humidity.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="row search-container">
+        <div class="col-lg-6 col-centered">
+            <form action="" method="post">
+                <div class="input-group">
+                    <div class="input-group-btn">#}
+                        <select id="select" name="filter_by" class="btn btn-default dropdown-toggle">
+                        <option value="no">设备编号</option>
+                        <option value="name">设备名称</option>
+                        <option value="type">设备类型</option>
+                        </select>
+                    </div><!-- /btn-group -->
+                    <input type="text" name="filter_content" class="form-control" aria-label="...">
+                    <span class="input-group-btn">
+                        <input  id="btn-submit" type="submit" class="btn btn-default" value="查询">
+                    </span>
+                </div><!-- /input-group -->
+            </form>
+        </div><!-- /.col-lg-6 -->
+    </div>
+
+    <div id="humidity" class="data-container">
+        <table class="table table-bordered">
+            {#            <caption>边框表格布局</caption>#}
+            <thead>
+            <tr>
+{#                <th>ID</th>#}
+                <th>设备编号</th>
+                <th>设备类型</th>
+                <th>设备名称</th>
+                <th>设备湿度</th>
+                <th>时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for data in history_data.items %}
+                <tr>
+{#                    <td>{{ data.id }}</td>#}
+                    <td>{{ data.equ_no }}</td>
+                    <td>{{ data.equ_type }}</td>
+                    <td>{{ data.equ_name }}</td>
+                    <td>{{ data.humidity }}</td>
+                    <td>{{ data.create_datetime }}</td>
+
+    {#                <td>#}
+    {#                    <button type="button" class="btn btn-primary">修改</button>#}
+    {#                    <button type="button" class="btn btn-primary">删除</button>#}
+    {#                </td>#}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {{ helper.render_pagination(history_data, 'web.humidity') }}
+    </div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+{% endblock %}

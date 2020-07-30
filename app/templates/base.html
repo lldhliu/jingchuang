@@ -20,51 +20,72 @@
     <div class="container">
         <div class="row">
             {% if current_user.nickname == "admin" %}
-                <div class="col-md-3 col-md-offset-1">
+                <div class="col-md-2 col-md-offset-1">
                     <a id="user" href="{{ url_for('web.index') }}"
                        class="flex-vertical-hor-center">
                         <img src="{{ url_for('static', filename='images/person.svg') }}"/>
                         <span>用户</span>
                     </a>
                 </div>
-                <div class="col-md-3">
-                <a id="equipment" href="{{ url_for('web.equipment') }}"
-                   class="flex-vertical-hor-center">
-                    <img src="{{ url_for('static', filename='images/gear-wide-connected.svg') }}"/>
-                    <span>设备详情</span>
-                </a>
+                <div class="col-md-2">
+                    <a id="equipment" href="{{ url_for('web.equipment') }}"
+                       class="flex-vertical-hor-center">
+                        <img src="{{ url_for('static', filename='images/gear-wide-connected.svg') }}"/>
+                        <span>设备详情</span>
+                    </a>
                 </div>
-                <div class="col-md-3">
-                    <a id="equ_data" href="{{ url_for('web.equipment_data') }}"
+                <div class="col-md-2">
+                    <a id="temperature" href="{{ url_for('web.temperature') }}"
                        class="flex-vertical-hor-center">
                         <img src="{{ url_for('static', filename='images/layout-text-sidebar-reverse.svg') }}"/>
-                        <span>历史数据</span>
+                        <span>历史温度数据</span>
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <a id="humidity" href="{{ url_for('web.humidity') }}"
+                       class="flex-vertical-hor-center">
+                        <img src="{{ url_for('static', filename='images/layout-text-sidebar-reverse.svg') }}"/>
+                        <span>历史湿度数据</span>
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <a id="swich" href="{{ url_for('web.swich') }}"
+                       class="flex-vertical-hor-center">
+                        <img src="{{ url_for('static', filename='images/layout-text-sidebar-reverse.svg') }}"/>
+                        <span>历史合模次数</span>
                     </a>
                 </div>
             {% else %}
-                <div class="col-md-6">
-                <a id="equipment" href="{{ url_for('web.equipment') }}"
-                   class="flex-vertical-hor-center">
-                    <img src="{{ url_for('static', filename='images/gear-wide-connected.svg') }}"/>
-                    <span>设备详情</span>
-                </a>
+                <div class="col-md-3">
+                    <a id="equipment" href="{{ url_for('web.equipment') }}"
+                       class="flex-vertical-hor-center">
+                        <img src="{{ url_for('static', filename='images/gear-wide-connected.svg') }}"/>
+                        <span>设备详情</span>
+                    </a>
                 </div>
-                <div class="col-md-6">
-                    <a id="equ_data" href="{{ url_for('web.equipment_data') }}"
+                <div class="col-md-3">
+                    <a id="temperature" href="{{ url_for('web.temperature') }}"
                        class="flex-vertical-hor-center">
                         <img src="{{ url_for('static', filename='images/layout-text-sidebar-reverse.svg') }}"/>
-                        <span>历史数据</span>
+                        <span>历史温度数据</span>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a id="humidity" href="{{ url_for('web.humidity') }}"
+                       class="flex-vertical-hor-center">
+                        <img src="{{ url_for('static', filename='images/layout-text-sidebar-reverse.svg') }}"/>
+                        <span>历史湿度数据</span>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a id="swich" href="{{ url_for('web.swich') }}"
+                       class="flex-vertical-hor-center">
+                        <img src="{{ url_for('static', filename='images/layout-text-sidebar-reverse.svg') }}"/>
+                        <span>历史合模次数</span>
                     </a>
                 </div>
             {% endif %}
 
-{#                <div class="col-md-2">#}
-{#                    <a id="pending" href="#"#}
-{#                       class="flex-vertical-hor-center">#}
-{#                        <img src="{{ url_for('static', filename='images/fish.png') }}"/>#}
-{#                        <span>鱼漂</span>#}
-{#                    </a>#}
-{#                </div>#}
         </div>
     </div>
 </div>
@@ -82,6 +103,7 @@
 {% endblock %}
 <div class='container'>
     <div class="row">
+{#    <p>报错日志</p>#}
         {% with messages = get_flashed_messages() %}
             {% for message in messages %}
                 {% if message %}
@@ -90,6 +112,7 @@
             {% endfor %}
         {% endwith %}
         {% if form and form.errors %}
+
             {% for key, error in form.errors.items() %}
                 <div class="alert alert-warning" role="alert">{{ error }}</div>
             {% endfor %}

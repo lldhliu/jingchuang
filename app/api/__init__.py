@@ -15,12 +15,3 @@ def not_found(e):
     # 通用异常处理逻辑都可以放在这里
     return render_template('404.html'), 404
 
-
-# from app.api import book
-# from app.api import auth
-# from app.web import drift
-# from app.web import gift
-# from app.web import main
-# from app.web import wish
-from app.api import book1
-# from app.web import user

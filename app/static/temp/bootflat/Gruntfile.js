@@ -126,7 +126,7 @@ module.exports = function(grunt) {
             },
             files: {
                 // Destination : Source
-                './htmlmin/index.html': './index.html',
+                './htmlmin/index.html': './user.html',
                 './htmlmin/getting-started.html': './getting-started.html',
                 './htmlmin/free-psd.html': './free-psd.html',
                 './htmlmin/documentation.html': './documentation.html',

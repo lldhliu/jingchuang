@@ -12,7 +12,7 @@ __author__ = '七月'
 def index(page=1):
     if current_user.nickname == "admin":
         users = get_user_list(page)
-        return render_template('index.html', users=users)
+        return render_template('user.html', users=users)
     return redirect(url_for("web.equipment"))
 
 

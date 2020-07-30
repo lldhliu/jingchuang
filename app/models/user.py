@@ -2,14 +2,14 @@
  Created by ldh on 18-12-3
 """
 from flask import current_app
+from itsdangerous import JSONWebSignatureSerializer as Serializer
 
 from app import login_manager
 from app.models.base import Base, db
-from itsdangerous import JSONWebSignatureSerializer as Serializer
 
 __author__ = "ldh"
 
-from sqlalchemy import Column, Integer, String, Boolean, Float
+from sqlalchemy import Column, Integer, String
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -77,6 +77,12 @@ class User(UserMixin, Base):
             nickname=self.nickname,
             email=self.email
         )
+
+    @property
+    def is_admin(self):
+        if self.nickname == 'admin':
+            return True
+        return False
 
 
 @login_manager.user_loader

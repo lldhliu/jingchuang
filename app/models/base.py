@@ -3,6 +3,7 @@
 """
 from contextlib import contextmanager
 from datetime import datetime
+
 from flask_sqlalchemy import SQLAlchemy as _SQLAlchemy, BaseQuery
 from sqlalchemy import Column, SmallInteger, Integer, String
 
@@ -22,8 +23,8 @@ class SQLAlchemy(_SQLAlchemy):
 
 class Query(BaseQuery):
     def filter_by(self, **kwargs):
-        if 'status' not in kwargs.keys():
-            kwargs['status'] = 1
+        if 'del_flag' not in kwargs.keys():
+            kwargs['del_flag'] = 0
         return super(Query, self).filter_by(**kwargs)
 
 
@@ -41,7 +42,16 @@ class Base(db.Model):
     del_flag = Column(SmallInteger, default=0)
 
     def __init__(self):
-        self.create_time = int(datetime.now().timestamp())
+        if self.is_update():
+            self.update_time = int(datetime.now().timestamp())
+        else:
+            self.create_time = int(datetime.now().timestamp())
+            self.update_time = int(datetime.now().timestamp())
+
+    def is_update(self):
+        if self.create_time:
+            return True
+        return False
 
     def set_attrs(self, attrs_dict):
         for key, value in attrs_dict.items():

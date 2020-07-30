@@ -33,6 +33,6 @@ def create_app():
 
 def register_blueprint(app):
     from app.web import web
-    app.register_blueprint(web)
+    app.register_blueprint(web, url_prefix='/equipment')
     from app.api import api
     app.register_blueprint(api)

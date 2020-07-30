@@ -32,14 +32,23 @@
                                        aria-describedby="sizing-addon2">
                             </div>
                             <div class="input-group">
+{#                                <div class="equ_name">#}
                                 <span class="input-group-addon" id="equ_name">设备名称</span>
                                 <input name="name" type="text" class="form-control" placeholder="设备名称"
                                        aria-describedby="sizing-addon2">
+{#                                </div>#}
                             </div>
+{#                                <div class="equ_type">#}
                             <div class="input-group">
                                 <span class="input-group-addon" id="equ_type">设备类型</span>
-                                <input name="type" type="text" class="form-control" placeholder="设备类型"
-                                       aria-describedby="sizing-addon2">
+                                <select id="select" name="type" class="btn btn-default dropdown-toggle">
+                                    <option value="hardware_mold">五金模具</option>
+                                    <option value="plastic_mold">注塑模具</option>
+{#                                    <option value="type">设备类型</option>#}
+                                </select>
+{#                                <input name="type" type="text" class="form-control" placeholder="设备类型"#}
+{#                                       aria-describedby="sizing-addon2">#}
+{#                                </div>#}
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="equ_address">设备地址</span>

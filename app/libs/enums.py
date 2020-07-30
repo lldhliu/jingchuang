@@ -5,33 +5,58 @@ __author__ = "ldh"
 from enum import Enum
 
 
-class PendingStatus(Enum):
+class EquipmentType(Enum):
     """
-    交易状态
+    设备类型
     """
-    Waiting = 1
-    Success = 2
-    Reject = 3
-    Redraw = 4
+    hardware_mold = 1
+    plastic_mold = 2
 
     @classmethod
-    def pending_str(cls, status, key):
+    def type_str(cls, status, key):
         key_map = {
-            cls.Waiting: {
-                'requester': '等待对方邮寄',
-                'gifter': '等待你邮寄',
+            cls.hardware_mold: {
+                'desc': '五金模具',
             },
-            cls.Success: {
-                'requester': '对方已邮寄',
-                'gifter': '你已邮寄, 交易完成',
-            },
-            cls.Reject: {
-                'requester': '对方已拒绝',
-                'gifter': '你已拒绝',
-            },
-            cls.Redraw: {
-                'requester': '你已撤销',
-                'gifter': '对方已撤销',
-            },
+            cls.plastic_mold: {
+                'desc': '注塑模具',
+            }
         }
         return key_map[status][key]
+
+    # 根据类型描述生成枚举类型
+    @classmethod
+    def str2enum(cls, str):
+        key_map = {
+            '五金模具': cls.hardware_mold,
+            '注塑模具': cls.plastic_mold
+        }
+        return key_map[str]
+
+
+class QueryType(Enum):
+    """
+    查询条件
+    """
+    # 设备编号
+    no = 1
+    # 设备名称
+    name = 2
+    # 设备类型
+    type = 3
+
+
+class DataType(Enum):
+    """
+    数据类型
+    """
+    # 温度
+    temperature = 1
+    # 开关状态
+    swich = 2
+    # 湿度
+    humidity = 3
+
+
+if __name__ == '__main__':
+    print(DataType['temperature'])

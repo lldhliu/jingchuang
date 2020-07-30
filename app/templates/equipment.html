@@ -23,8 +23,6 @@
                     </span>
                 </div>
             </form>
-
-
         </div><!-- /.col-lg-6 -->
 
 
@@ -42,10 +40,17 @@
                 <th>设备编号</th>
                 <th>设备类型</th>
                 <th>设备名称</th>
-                <th>设备地址</th>
-                <th>设备温度(实时)</th>
-                <th>合模次数（实时）</th>
-{#                <th class="operate">操作</th>#}
+                <th>动模1温度</th>
+                <th>动模2温度</th>
+                <th>动模3温度</th>
+                <th>动模4温度</th>
+                <th>定模1温度</th>
+                <th>定模2温度</th>
+                <th>定模3温度</th>
+                <th>定模4温度</th>
+                <th>合模次数</th>
+                <th>湿度</th>
+                {#                <th class="operate">操作</th>#}
             </tr>
             </thead>
             <tbody>
@@ -55,9 +60,16 @@
                 <td>{{ equipment.no }}</td>
                 <td>{{ equipment.type }}</td>
                 <td>{{ equipment.name }}</td>
-                <td>{{ equipment.address }}</td>
-                <td>{{ equipment.temperature }}</td>
+                <td>{{ equipment.mm_temp_01 }}</td>
+                <td>{{ equipment.mm_temp_02 }}</td>
+                <td>{{ equipment.mm_temp_03 }}</td>
+                <td>{{ equipment.mm_temp_04 }}</td>
+                <td>{{ equipment.fm_temp_01 }}</td>
+                <td>{{ equipment.fm_temp_02 }}</td>
+                <td>{{ equipment.fm_temp_03 }}</td>
+                <td>{{ equipment.fm_temp_04 }}</td>
                 <td>{{ equipment.open_count }}</td>
+                <td>{{ equipment.humidity }}</td>
 {#                <td>#}
 {#                    <button type="button" class="btn btn-primary">修改</button>#}
 {#                    <button type="button" class="btn btn-primary">删除</button>#}
