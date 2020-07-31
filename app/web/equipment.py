@@ -15,6 +15,7 @@ from app.view_models.equipment import EquipmentCollection
 from app.view_models.humidity import HumidityCollection
 from app.view_models.swich import SwichCollection
 from app.view_models.temperature import TemperatureCollection
+from logs import log_equ
 from . import web
 
 __author__ = "ldh"
@@ -148,6 +149,7 @@ def humidity(page=1):
 def recieve_temperature():
     print(request.form.to_dict())
     raw_data = request.form.to_dict()
+    log_equ('温度接口数据: ', raw_data)
     return 'ok'
 
 
@@ -155,4 +157,13 @@ def recieve_temperature():
 def recieve_switch():
     print(request.form.to_dict())
     raw_data = request.form.to_dict()
+    log_equ('合模次数接口数据: ', raw_data)
+    return 'ok'
+
+
+@web.route('/recieve/humidity', methods=['POST'])
+def recieve_humidity():
+    print(request.form.to_dict())
+    raw_data = request.form.to_dict()
+    log_equ('湿度接口数据: ', raw_data)
     return 'ok'
