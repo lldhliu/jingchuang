@@ -176,9 +176,19 @@ def recieve_humidity():
     return Hex.string_to_hex("ok")
 
 
-@web.route('/recieve/data', methods=['POST'])
+@web.route('/data/recieve', methods=['POST'])
 def recieve_data():
     print(request.form.to_dict())
     raw_data = request.form.to_dict()
+    type = Hex.hex_to_string(raw_data['type'])
+    if type == '10':
+        temp = Temperature()
+        temp.raw_data = raw_data
+    elif type == '20':
+        humidity = Humidity()
+        humidity.raw_data = raw_data
+    elif type == '30':
+        switch = Switch()
+        switch.raw_data = raw_data
     log_equ('data接口数据: ', raw_data)
     return Hex.string_to_hex("ok")
