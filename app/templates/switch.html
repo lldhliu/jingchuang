@@ -2,7 +2,7 @@
 {% import "helper.html" as helper %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/swich.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/switch.css') }}">
 {% endblock %}
 {% block content %}
     <div class="row search-container">
@@ -25,7 +25,7 @@
         </div><!-- /.col-lg-6 -->
     </div>
 
-    <div id="swich" class="data-container">
+    <div id="switch" class="data-container">
         <table class="table table-bordered">
             {#            <caption>边框表格布局</caption>#}
             <thead>
@@ -36,6 +36,7 @@
                 <th>设备名称</th>
                 <th>开合状态</th>
                 <th>合模次数</th>
+                <th>raw_data</th>
                 <th>时间</th>
             </tr>
             </thead>
@@ -46,8 +47,9 @@
                     <td>{{ data.equ_no }}</td>
                     <td>{{ data.equ_type }}</td>
                     <td>{{ data.equ_name }}</td>
-                    <td>{{ data.swich }}</td>
+                    <td>{{ data.switch }}</td>
                     <td>{{ data.open_count }}</td>
+                    <td>{{ data.raw_data }}</td>
                     <td>{{ data.create_datetime }}</td>
 
     {#                <td>#}
@@ -58,7 +60,7 @@
             {% endfor %}
             </tbody>
         </table>
-        {{ helper.render_pagination(history_data, 'web.equipment_data') }}
+        {{ helper.render_pagination(history_data, 'web.switch') }}
     </div>
 
 

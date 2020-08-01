@@ -11,12 +11,13 @@ class HumidityModel(object):
     def __init__(self, humidity):
         self.id = humidity.id
         self.equ_id = humidity.equ_id
-        self.humidity = humidity.swich
+        self.humidity = humidity.humidity
         self.create_datetime = humidity.create_datetime
         self.equ_name = humidity.equ_summary.name
         self.equ_no = humidity.equ_summary.no
         self.equ_type = EquipmentType.type_str(humidity.equ_summary.type, 'desc')
         # self.equ_type = data.equ_summary.type
+        self.raw_data = humidity.raw_data
 
 
 class HumidityCollection:
@@ -29,7 +30,7 @@ class HumidityCollection:
         self.iter_pages = humidities.iter_pages
         self.items = self.fill(humidities)
 
-    def fill(self, swichs):
-        res = [HumidityModel(data) for data in swichs.items]
+    def fill(self, switchs):
+        res = [HumidityModel(data) for data in switchs.items]
         # self.total = len(self.equipments)
         return res

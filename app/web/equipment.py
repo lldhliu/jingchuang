@@ -6,14 +6,15 @@ from flask_login import current_user, login_required
 
 from app.forms.equipment import CreateEquipmentForm, QueryForm
 from app.libs.enums import EquipmentType
+from app.libs.hex_utils import Hex
 from app.models.base import db
 from app.models.equipment import Equipment
 from app.models.humidity import Humidity
-from app.models.swich import Swich
+from app.models.switch import Switch
 from app.models.temperature import Temperature
 from app.view_models.equipment import EquipmentCollection
 from app.view_models.humidity import HumidityCollection
-from app.view_models.swich import SwichCollection
+from app.view_models.switch import SwitchCollection
 from app.view_models.temperature import TemperatureCollection
 from logs import log_equ
 from . import web
@@ -99,10 +100,10 @@ def temperature(page=1):
     return render_template('temperature.html', history_data=history_data)
 
 
-@web.route('/data/swich', methods=['POST', 'GET'])
-@web.route('/data/swich/<int:page>')  # 第一种注册路由方式（一般使用）
+@web.route('/data/switch', methods=['POST', 'GET'])
+@web.route('/data/switch/<int:page>')  # 第一种注册路由方式（一般使用）
 @login_required
-def swich(page=1):
+def switch(page=1):
     form = QueryForm(request.form)
     if request.method == 'POST':
         if form.validate():
@@ -111,15 +112,15 @@ def swich(page=1):
             filter_by = form.filter_by.data
             # filter_content = request.form.to_dict()['filter_content']
             filter_content = form.filter_content.data
-            swichs = Swich.get_data_list(page, current_user.is_admin, current_user.id,
+            switchs = Switch.get_data_list(page, current_user.is_admin, current_user.id,
                                                      filter_by=filter_by, filter_content=filter_content)
-            history_data = SwichCollection(swichs)
-            return render_template('swich.html', history_data=history_data)
-        return render_template('swich.html', form=form)
+            history_data = SwitchCollection(switchs)
+            return render_template('switch.html', history_data=history_data)
+        return render_template('switch.html', form=form)
 
-    swichs = Swich.get_data_list(page, current_user.is_admin, current_user.id)
-    history_data = SwichCollection(swichs)
-    return render_template('swich.html', history_data=history_data)
+    switchs = Switch.get_data_list(page, current_user.is_admin, current_user.id)
+    history_data = SwitchCollection(switchs)
+    return render_template('switch.html', history_data=history_data)
 
 
 @web.route('/data/humidity', methods=['POST', 'GET'])
@@ -149,21 +150,35 @@ def humidity(page=1):
 def recieve_temperature():
     print(request.form.to_dict())
     raw_data = request.form.to_dict()
+    temp = Temperature()
+    temp.raw_data = raw_data
     log_equ('温度接口数据: ', raw_data)
-    return 'ok'
+    return Hex.string_to_hex("ok")
 
 
 @web.route('/recieve/switch', methods=['POST'])
 def recieve_switch():
     print(request.form.to_dict())
     raw_data = request.form.to_dict()
+    switch = Switch()
+    switch.raw_data = raw_data
     log_equ('合模次数接口数据: ', raw_data)
-    return 'ok'
+    return Hex.string_to_hex("ok")
 
 
 @web.route('/recieve/humidity', methods=['POST'])
 def recieve_humidity():
     print(request.form.to_dict())
     raw_data = request.form.to_dict()
+    humidity = Humidity()
+    humidity.raw_data = raw_data
     log_equ('湿度接口数据: ', raw_data)
-    return 'ok'
+    return Hex.string_to_hex("ok")
+
+
+@web.route('/recieve/data', methods=['POST'])
+def recieve_data():
+    print(request.form.to_dict())
+    raw_data = request.form.to_dict()
+    log_equ('data接口数据: ', raw_data)
+    return Hex.string_to_hex("ok")

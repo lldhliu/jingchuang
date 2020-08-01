@@ -9,7 +9,7 @@
         <div class="col-lg-6 col-centered">
             <form action="" method="post">
                 <div class="input-group">
-                    <div class="input-group-btn">#}
+                    <div class="input-group-btn">
                         <select id="select" name="filter_by" class="btn btn-default dropdown-toggle">
                         <option value="no">设备编号</option>
                         <option value="name">设备名称</option>
@@ -35,6 +35,7 @@
                 <th>设备类型</th>
                 <th>设备名称</th>
                 <th>设备湿度</th>
+                <th>raw_data</th>
                 <th>时间</th>
             </tr>
             </thead>
@@ -46,6 +47,7 @@
                     <td>{{ data.equ_type }}</td>
                     <td>{{ data.equ_name }}</td>
                     <td>{{ data.humidity }}</td>
+                    <td>{{ data.raw_data }}</td>
                     <td>{{ data.create_datetime }}</td>
 
     {#                <td>#}

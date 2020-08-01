@@ -12,8 +12,8 @@
     if (url== '/equipment/data/temperature'){
         $('#temperature').addClass('linking')
     }
-    if (url== '/equipment/data/swich'){
-        $('#swich').addClass('linking')
+    if (url== '/equipment/data/switch'){
+        $('#switch').addClass('linking')
     }
     if (url== '/equipment/data/humidity'){
         $('#humidity').addClass('linking')

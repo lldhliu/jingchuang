@@ -42,6 +42,7 @@
                 <th>定模2温度</th>
                 <th>定模3温度</th>
                 <th>定模4温度</th>
+                <th>raw_data</th>
                 <th>时间</th>
             </tr>
             </thead>
@@ -60,6 +61,7 @@
                     <td>{{ data.fm_temp_02 }}</td>
                     <td>{{ data.fm_temp_03 }}</td>
                     <td>{{ data.fm_temp_04 }}</td>
+                    <td>{{ data.raw_data }}</td>
                     <td>{{ data.create_datetime }}</td>
 
     {#                <td>#}
@@ -70,7 +72,7 @@
             {% endfor %}
             </tbody>
         </table>
-        {{ helper.render_pagination(history_data, 'web.equipment_data') }}
+        {{ helper.render_pagination(history_data, 'web.temperature') }}
     </div>
 
 

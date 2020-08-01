@@ -24,6 +24,7 @@ class TemperatureViewModel(object):
         self.equ_no = temperature.equ_summary.no
         self.equ_type = EquipmentType.type_str(temperature.equ_summary.type, 'desc')
         # self.equ_type = data.equ_summary.type
+        self.raw_data = temperature.raw_data
 
 
 class TemperatureCollection:

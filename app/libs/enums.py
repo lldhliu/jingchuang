@@ -53,7 +53,7 @@ class DataType(Enum):
     # 温度
     temperature = 1
     # 开关状态
-    swich = 2
+    switch = 2
     # 湿度
     humidity = 3
 
