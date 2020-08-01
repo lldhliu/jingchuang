@@ -38,4 +38,11 @@ class Hex(object):
 
 
 if __name__ == "__main__":
-    Hex.hex_to_string("e6b58be8af95e5ad97e7aca6e4b8b2")
+    s = "32 38 32 30 30 36 31 31 39 45 38 43 45 32 37 46 01 04 02 01 0D 79 65 64 02 01 0F FF 40 10 03 10 80 00 80 00 80 00 01 0B 80 00 80 00 80 00 01 08 E3 3B"
+    s = s.split(' ')
+    res = []
+    for i in s:
+        print(i)
+        r = Hex.hex_to_string(i)
+        res.append(r)
+    print(''.join(res))

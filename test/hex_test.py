@@ -15,7 +15,8 @@ class Hex(object):
         :return:
         """
         str = (binascii.unhexlify(hex_str)).decode()
-        # print("16进制%s转字符串:%s" % (hex_str, str))
+        # str = (binascii.unhexlify(hex_str))
+        print("16进制%s转字符串:%s" % (hex_str, str))
         return str
 
     @classmethod
@@ -36,5 +37,9 @@ class Hex(object):
 
 
 if __name__ == "__main__":
-    Hex.hex_to_string("e6b58be8af95e5ad97e7aca6e4b8b2")
-    Hex.string_to_hex("测试字符串")
+    # s = "32383230303631313945384345323746010402010D79656402010FFF40100310800080008000010B8000800080000108E33B"
+    s = "100310800080008000010B8000800080000108E33B"
+    print(s[18:22])
+    print(int(s[18:22], 16))
+    # print(res)
+
