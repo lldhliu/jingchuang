@@ -72,3 +72,7 @@ class Equipment(Base):
     def get_equ_ids(cls, uid):
         equipments = Equipment.query.filter_by(uid=uid).all()
         return [e.id for e in equipments] if equipments else []
+
+    @classmethod
+    def get_equ_by_cmid(cls, cmid):
+        return Equipment.query.filter_by(cm_no=cmid).first()
