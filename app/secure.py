@@ -6,7 +6,7 @@ __author__ = "ldh"
 """
 数据库密码，账号，flask appkey等机密的配置放在这里
 """
-DEBUG = True  #  False
+DEBUG = False  #  False
 SQLALCHEMY_DATABASE_URI = 'mysql+cymysql://root:2255@47.98.177.221:3306/jingchuang'
 SECRET_KEY = 'this is a secret key build by devin_liu'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
