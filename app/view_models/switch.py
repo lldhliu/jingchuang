@@ -1,7 +1,7 @@
 """
  Created by ldh on 18-11-29
 """
-from app.libs.enums import EquipmentType
+from app.libs.enums import EquipmentType, SwitchEnum
 
 __author__ = "ldh"
 
@@ -11,8 +11,8 @@ class SwitchViewModel(object):
     def __init__(self, switch):
         self.id = switch.id
         self.equ_id = switch.equ_id
-        self.switch = switch.switch
-        self.count = switch.switch
+        self.switch = SwitchEnum.desc(switch.switch, 'desc')
+        self.count = switch.count
         self.create_datetime = switch.create_datetime
         self.equ_name = switch.equ_summary.name
         self.equ_no = switch.equ_summary.no
@@ -27,6 +27,7 @@ class SwitchCollection:
         self.has_prev = switchs.has_prev
         self.prev_num = switchs.prev_num
         self.next_num = switchs.next_num
+        self.has_next = switchs.has_next
         self.total = switchs.total
         self.iter_pages = switchs.iter_pages
         self.items = self.fill(switchs)

@@ -7,6 +7,7 @@ from sqlalchemy.orm import relationship
 
 from app.libs.enums import EquipmentType
 from app.models.base import Base
+from app.setting import PER_PAGE
 
 __author__ = "ldh"
 
@@ -55,7 +56,7 @@ class Equipment(Base):
                 else:
                     filter[filter_by] = filter_content
             # print(filter)
-            return Equipment.query.filter_by(**filter).paginate(page, per_page=10)
+            return Equipment.query.filter_by(**filter).paginate(page, per_page=PER_PAGE)
         else:
             filter["uid"] = uid
             if filter_content:
@@ -63,7 +64,7 @@ class Equipment(Base):
                     filter['_type'] = EquipmentType.str2enum(filter_content).value
                 else:
                     filter[filter_by] = filter_content
-            return Equipment.query.filter_by(**filter).paginate(page, per_page=10)
+            return Equipment.query.filter_by(**filter).paginate(page, per_page=PER_PAGE)
 
     def calculate_start(self, page):
         return (page - 1) * current_app.config['PER_PAGE']

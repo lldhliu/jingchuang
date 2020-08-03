@@ -46,7 +46,7 @@ class QueryType(Enum):
     type = 3
 
 
-class Switch(Enum):
+class SwitchEnum(Enum):
     """
     数据类型
     """
@@ -57,14 +57,14 @@ class Switch(Enum):
     def desc(cls, status, key):
         key_map = {
             cls.open: {
-                'desc': '五金模具',
+                'desc': '打开',
             },
             cls.close: {
-                'desc': '注塑模具',
+                'desc': '合上',
             }
         }
         return key_map[status][key]
 
 
-# if __name__ == '__main__':
-    # print(DataType['temperature'])
+if __name__ == '__main__':
+    print(SwitchEnum.desc())

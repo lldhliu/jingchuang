@@ -7,6 +7,7 @@ from sqlalchemy.orm import relationship
 from app.libs.enums import EquipmentType
 from app.models.base import Base
 from app.models.equipment import Equipment
+from app.setting import PER_PAGE
 
 __author__ = "ldh"
 
@@ -38,7 +39,7 @@ class Temperature(Base):
             # r = Temperature.query.join(Equipment, Equipment.id==Temperature.equ_id).filter_by(**filter)\
             #     .paginate(page, per_page=10)
             return Temperature.query.join(Equipment, Equipment.id==Temperature.equ_id).filter_by(**filter)\
-                .paginate(page, per_page=10)
+                .paginate(page, per_page=PER_PAGE)
 
         else:
             filter['uid'] = uid
@@ -48,7 +49,7 @@ class Temperature(Base):
                 else:
                     filter[filter_by] = filter_content
             return Temperature.query.join(Equipment, Equipment.id==Temperature.equ_id).filter_by(**filter)\
-                .paginate(page, per_page=10)
+                .paginate(page, per_page=PER_PAGE)
 
     @classmethod
     def get_last_data(cls, equ_id):

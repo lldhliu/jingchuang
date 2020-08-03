@@ -33,6 +33,7 @@ class TemperatureCollection:
         self.has_prev = temperatures.has_prev
         self.prev_num = temperatures.prev_num
         self.next_num = temperatures.next_num
+        self.has_next = temperatures.has_next
         self.total = temperatures.total
         self.iter_pages = temperatures.iter_pages
         self.items = self.fill(temperatures)

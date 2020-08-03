@@ -26,6 +26,7 @@ class HumidityCollection:
         self.has_prev = humidities.has_prev
         self.prev_num = humidities.prev_num
         self.next_num = humidities.next_num
+        self.has_next = humidities.has_next
         self.total = humidities.total
         self.iter_pages = humidities.iter_pages
         self.items = self.fill(humidities)

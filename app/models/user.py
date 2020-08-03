@@ -6,6 +6,7 @@ from itsdangerous import JSONWebSignatureSerializer as Serializer
 
 from app import login_manager
 from app.models.base import Base, db
+from app.setting import PER_PAGE
 
 __author__ = "ldh"
 
@@ -91,4 +92,4 @@ def get_user(uid):
 
 
 def get_user_list(page):
-    return User.query.paginate(page, per_page=10)
+    return User.query.paginate(page, per_page=PER_PAGE)

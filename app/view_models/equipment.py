@@ -57,6 +57,7 @@ class EquipmentCollection:
         self.has_prev = equipments.has_prev
         self.prev_num = equipments.prev_num
         self.next_num = equipments.next_num
+        self.has_next = equipments.has_next
         self.total = equipments.total
         self.iter_pages = equipments.iter_pages
         self.items = self.fill(equipments)

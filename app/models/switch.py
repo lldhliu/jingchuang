@@ -4,9 +4,10 @@
 from sqlalchemy import Column, Integer, ForeignKey, String, SmallInteger, desc
 from sqlalchemy.orm import relationship
 
-from app.libs.enums import EquipmentType
+from app.libs.enums import EquipmentType, SwitchEnum
 from app.models.base import Base
 from app.models.equipment import Equipment
+from app.setting import PER_PAGE
 
 __author__ = "ldh"
 
@@ -16,10 +17,17 @@ class Switch(Base):
     id = Column(Integer, primary_key=True)
     equipment = relationship('Equipment')
     equ_id = Column(Integer, ForeignKey('equipment.id'))  # 外键
-    switch = Column(SmallInteger, comment='开合状态')
+    _switch = Column('switch', SmallInteger, comment='开合状态')
     count = Column(Integer, comment='设备开合次数统计')
     raw_data = Column(String(1024), comment='原始数据')
 
+    @property
+    def switch(self):  # 转化成枚举
+        return SwitchEnum(self._switch)
+
+    @switch.setter
+    def switch(self, status):
+        self._switch = status.value
 
     @classmethod
     def get_data_list(cls, page, is_admin, uid, filter_by=None, filter_content=None):
@@ -33,7 +41,7 @@ class Switch(Base):
             # r = Switch.query.join(Equipment, Equipment.id==Switch.equ_id).filter_by(**filter)\
             #     .paginate(page, per_page=10)
             return Switch.query.join(Equipment, Equipment.id==Switch.equ_id).filter_by(**filter)\
-                .paginate(page, per_page=10)
+                .paginate(page, per_page=PER_PAGE)
 
         else:
             filter['uid'] = uid
@@ -43,7 +51,7 @@ class Switch(Base):
                 else:
                     filter[filter_by] = filter_content
             return Switch.query.join(Equipment, Equipment.id==Switch.equ_id).filter_by(**filter)\
-                .paginate(page, per_page=10)
+                .paginate(page, per_page=PER_PAGE)
 
     @classmethod
     def get_last_data(cls, equ_id):
